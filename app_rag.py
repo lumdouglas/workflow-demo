@@ -162,13 +162,15 @@ with col2:
                 m2.metric("Potential Savings", "$50k+")
 
 # --- DEBUG VIEW (Optional) ---
+# --- REPLACEMENT FOR STEP 3 UI ---
 with st.expander("Step 3: Quality & Compliance Verification", expanded=True):
     c1, c2 = st.columns(2)
     vendor_domain = c1.text_input("Source Domain", value="random-scraper.xyz")
     license_type = c2.selectbox("Proposed License", ["Commercial-Safe", "CC-BY-4.0", "CC-BY-NC", "GPL v3"])
     
     if st.button("🛡️ Run Compliance Audit"):
-        trusted, bad_license = verify_source(vendor_domain, license_type)
+        # FIX: Unpack all 3 variables here
+        trusted, bad_license, sanctioned = verify_source(vendor_domain, license_type)
         
         # 1. Domain Check Result
         if trusted:
@@ -182,12 +184,13 @@ with st.expander("Step 3: Quality & Compliance Verification", expanded=True):
         else:
             st.info(f"✅ **License Clear:** '{license_type}' is safe for commercial training.")
 
-            st.markdown("---")
+        st.markdown("---")
         st.subheader("Partner Legitimacy (KYB)")
         
+        # 3. Sanctions Check Result
         if sanctioned:
             st.error(f"🚨 **CRITICAL ALERT:** '{vendor_domain}' is flagged on the OFAC/Sanctions Watchlist. **DO NOT ENGAGE.**")
-            st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Stop_hand.svg/200px-Stop_hand.svg.png", width=50) # Visual Stop
+            st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Stop_hand.svg/200px-Stop_hand.svg.png", width=50) 
         else:
             st.success(f"✅ **Clear:** Entity passed Global Sanctions & Corporate Registry checks.")
             st.caption("Verification ID: KYB-2026-X992 | Source: Dun & Bradstreet API (Mock)")
