@@ -8,6 +8,8 @@ import random
 import os
 from mistralai import Mistral  # Updated for v1.0 SDK
 
+api_key = st.secrets["MISTRAL_API_KEY"]
+
 # --- 1. CONFIGURATION & STYLING ---
 st.set_page_config(
     page_title="Mistral Ops: Licensing Intake",
