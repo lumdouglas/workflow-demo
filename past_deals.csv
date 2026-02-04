@@ -1,0 +1,6 @@
+deal_id,partner,data_type,volume,total_price,unit_price,year
+101,NewsCorp,Text,10000,4500,0.45,2024
+102,GettyImages,Image,5000,2500,0.50,2024
+103,CodeAcademy,Code,20000,1000,0.05,2023
+104,MediGroup,Image,1000,1200,1.20,2024
+105,AudioBooks,Audio,500,5000,10.00,2024
